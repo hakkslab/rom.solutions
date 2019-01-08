@@ -18,7 +18,8 @@
     const file = evt.target.files[0];
 
     try {
-      const isValid = await romSolutions.getROMInfo(file);
+      const romInfo = await romSolutions.getROMInfo(file);
+      console.log(romInfo);
     } catch (exc) {
       console.error(exc);
     }
