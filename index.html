@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>rom.solutions</title>
+    <link rel="stylesheet" type="text/css" href="index.css" />
+  </head>
+  <body>
+    <h1 class="header">rom.solutions</h1>
+    <h2 class="header header--sub">Generate chip binaries for your custom NES cartridge</h2>
+    <div class="step">
+      <h3 class="step__header">Select Your NES Rom</h3>
+      <input type="file" id="rom-file" />
+      <label for="rom-file" class="step__button">Choose ROM</label>
+    </div>
+    <div class="step">
+      <h3 class="step__header">Select EPROM Sizes</h3>
+      <p class="step__header step__header--sub">Choose the EPROM sizes you'll be burning to</p>
+      <div class="step__chip-select">
+        <div class="step__chip">
+          <h4 class="chip__header">PRG-ROM</h4>
+          <select id="prg-size" class="chip__select">
+            <option value="0">Select PRG-ROM Size</option>
+            <option value="16">27C128 / 128Kbit / 16KB</option>
+            <option value="32">27C256 / 256Kbit / 32KB</option>
+            <option value="64">27C512 / 512Kbit / 64KB</option>
+            <option value="128">27C010 / 1Mbit / 128KB</option>
+            <option value="256">27C020 / 2Mbit / 256KB</option>
+            <option value="512">27C040 / 2Mbit / 512KB</option>
+          </select>
+        </div>
+        <div class="step__chip">
+          <h4 class="chip__header">CHR-ROM</h4>
+          <select id="chr-size" class="chip__select">
+            <option value="0">Select CHR-ROM Size</option>
+            <option value="16">27C128 / 128Kbit / 16KB</option>
+            <option value="32">27C256 / 256Kbit / 32KB</option>
+            <option value="64">27C512 / 512Kbit / 64KB</option>
+            <option value="128">27C010 / 1Mbit / 128KB</option>
+            <option value="256">27C020 / 2Mbit / 256KB</option>
+            <option value="512">27C040 / 2Mbit / 512KB</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
