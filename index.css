@@ -80,3 +80,20 @@ body {
 .step__button:active {
   background: #001537;
 }
+
+.rom-info {
+  width: 50%;
+  margin: 2.4rem auto 0;
+  font-size: 1.2rem;
+}
+
+.rom-info__title,
+.rom-info__value {
+  width: 50%;
+  padding: 0.6rem;
+}
+
+.rom-info__title {
+  text-align: right;
+  font-weight: bold;
+}
