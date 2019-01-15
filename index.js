@@ -1,6 +1,6 @@
 (function() {
 
-  const { romSolutions } = window;
+  const { RomSolutions } = window;
 
   let prgRomSize;
   let chrRomSize;
@@ -29,15 +29,15 @@
     return $row;
   }
 
-  function displayRomInfo(romInfo) {
+  function displayRomInfo(rom) {
     const $infoTable = document.getElementById('ines-info');
     emptyEl($infoTable);
     const $tbody = document.createElement('tbody');
-    $tbody.appendChild(_createRomInfoRow('PRG-ROM size', `${romInfo.prgSize / 1024}KB`));
-    $tbody.appendChild(_createRomInfoRow('CHR-ROM size', `${romInfo.chrSize / 1024}KB`));
-    $tbody.appendChild(_createRomInfoRow('Mapper ID', romInfo.mapperId));
-    if (romInfo.mapperName) {
-      $tbody.appendChild(_createRomInfoRow('Mapper Name', romInfo.mapperName));
+    $tbody.appendChild(_createRomInfoRow('PRG-ROM size', `${rom.prgRomSize / 1024}KB`));
+    $tbody.appendChild(_createRomInfoRow('CHR-ROM size', `${rom.chrRomSize / 1024}KB`));
+    $tbody.appendChild(_createRomInfoRow('Mapper ID', rom.mapperId));
+    if (rom.mapperName != rom.mapperId) {
+      $tbody.appendChild(_createRomInfoRow('Mapper Name', rom.mapperName));
     }
     $infoTable.appendChild($tbody);
   }
@@ -46,8 +46,9 @@
     const file = evt.target.files[0];
 
     try {
-      const romInfo = await romSolutions.getROMInfo(file);
-      displayRomInfo(romInfo);
+      const rom = new RomSolutions();
+      await rom.load(file);
+      displayRomInfo(rom);
     } catch (exc) {
       console.error(exc);
     }
