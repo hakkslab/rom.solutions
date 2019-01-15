@@ -140,3 +140,11 @@ body {
   text-align: right;
   font-weight: bold;
 }
+
+.footer {
+  text-align: center;
+}
+
+.footer__link {
+  color: #fff;
+}
