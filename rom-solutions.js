@@ -95,6 +95,22 @@ window.RomSolutions = (function() {
     }
 
     /**
+     * Creates an specifically sized EPROM binary from a source ROM.
+     * Source is mirrored to fill the whole output size.
+     *
+     * @param {Uint8Array} srcRom The source ROM data
+     * @param {Number} destSize Size of the EPROM binary to generate
+     * @return {Blob} The generated EPROM
+     */
+    static createEpromBinary(srcRom, destSize) {
+      const eprom = new Uint8Array(destSize);
+      for (let i = 0; i < destSize; i += srcRom.length) {
+        eprom.set(srcRom, i);
+      }
+      return new Blob([ eprom.buffer ], { type: 'application/octet-stream' });
+    }
+
+    /**
      * Loads an NES rom from the file provided
      *
      * @param {File} fileBlob

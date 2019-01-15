@@ -31,6 +31,10 @@ body {
   margin: 2.4rem;
 }
 
+.step--hidden {
+  display: none;
+}
+
 .step__header {
   text-align: center;
   font-size: 2.4rem;
@@ -42,15 +46,21 @@ body {
   margin-top: -1.6rem;
 }
 
-.step__chip-select {
+.step__two-col {
   overflow: hidden;
 }
 
-.step__chip {
+.step__two-col .step__col {
   box-sizing: border-box;
   width: 50%;
   padding: 1.6rem;
   float: left;
+}
+
+.step__col.step__col--full {
+  float: none;
+  width: 100%;
+  clear: both;
 }
 
 .chip__header {
@@ -70,11 +80,21 @@ body {
 .step__button {
   background: #011e4f;
   padding: 1.2rem 2.4rem;
+  margin: 0 auto;
   font-size: 1.6rem;
-  margin: 0 4.8rem;
+  text-decoration: none;
+  color: #fff;
   display: block;
+  box-sizing: content-box;
+  width: calc(100% - 9.6rem);
   text-align: center;
   cursor: pointer;
+  border: 0;
+}
+
+.step__button:disabled {
+  opacity: 0.5;
+  cursor: default;
 }
 
 .step__button:active {
@@ -84,7 +104,11 @@ body {
 .rom-info {
   width: 50%;
   margin: 2.4rem auto 0;
-  font-size: 1.2rem;
+  font-size: 1.6rem;
+}
+
+.rom-info--empty {
+  display: none;
 }
 
 .rom-info__title,
