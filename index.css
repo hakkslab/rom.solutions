@@ -15,6 +15,25 @@ body {
   margin: 5rem auto 0;
 }
 
+.page-header {
+  position: relative;
+}
+
+.page-header:before,
+.page-header:after {
+  content: '';
+  position: absolute;
+  width: 56px;
+  height: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: url(nintendo.gif) no-repeat;
+}
+
+.page-header:after {
+  right: 0;
+}
+
 .header {
   font-size: 4.8rem;
   text-align: center;
