@@ -63,10 +63,14 @@
       [ 'chr-size', 'chrRomSize' ]
     ].forEach(([ elementId, romProp ]) => {
       const $el = document.getElementById(elementId);
-      $el.querySelectorAll('option').forEach($option => {
-        const romSize = $option.value * 1024;
-        $option.disabled = romSize < currentRom[romProp];
-      });
+      if (currentRom[romProp] > 0) {
+        $el.querySelectorAll('option').forEach($option => {
+          const romSize = $option.value * 1024;
+          $option.disabled = romSize < currentRom[romProp];
+        });
+      } else {
+        $el.disabled = true;
+      }
     });
     handleChipSizeChange();
   }
@@ -112,19 +116,26 @@
   }
 
   function handleChipSizeChange(evt) {
-    $generateBinaries.disabled = !($prgSize.value > 0 && $chrSize.value > 0);
+    $generateBinaries.disabled = !(
+      ($prgSize.value > 0 || currentRom.prgRomSize === 0) &&
+      ($chrSize.value > 0 || currentRom.chrRomSize === 0)
+    );
   }
 
   function handleGenerateBinariesClick(evt) {
-    const $prgDownload = createEpromDownloadButton(
+    const $prgDownload = currentRom.prgRomSize > 0 && createEpromDownloadButton(
       currentRom.prgRom, $prgSize.value * ONE_KB, 'prg', 'Download PRG-ROM'
     );
-    const $chrDownload = createEpromDownloadButton(
+    const $chrDownload = currentRom.chrRomSize > 0 && createEpromDownloadButton(
       currentRom.chrRom, $chrSize.value * ONE_KB, 'chr', 'Download CHR-ROM'
     );
     emptyEl($stepDownload);
-    $stepDownload.appendChild($prgDownload);
-    $stepDownload.appendChild($chrDownload);
+    if ($prgDownload) {
+      $stepDownload.appendChild($prgDownload);
+    }
+    if ($chrDownload) {
+      $stepDownload.appendChild($chrDownload);
+    }
     $stepDownload.parentNode.classList.remove(STEP_HIDDEN);
   }
 
